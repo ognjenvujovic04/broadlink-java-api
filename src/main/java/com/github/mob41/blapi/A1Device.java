@@ -31,6 +31,8 @@ package com.github.mob41.blapi;
 import java.io.IOException;
 import java.net.DatagramPacket;
 
+import java.util.Base64;
+
 import com.github.mob41.blapi.mac.Mac;
 import com.github.mob41.blapi.pkt.CmdPayload;
 import com.github.mob41.blapi.pkt.Payload;
