@@ -28,7 +28,7 @@
  *******************************************************************************/
 package com.github.mob41.blapi.pkt;
 
-import javax.xml.bind.DatatypeConverter;
+import java.util.Base64;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -146,7 +146,7 @@ public class CmdPacket implements Packet {
             log.debug("Encrypting payload");
 
             payload = aesInstance.encrypt(payloadPad);
-            log.debug("Encrypted payload bytes: {}", DatatypeConverter.printHexBinary(payload));
+            log.debug("Encrypted payload bytes: {}", Base64.getEncoder().encodeToString(payload));
 
             log.debug("Encrypted. len=" + payload.length);
         } catch (Exception e) {

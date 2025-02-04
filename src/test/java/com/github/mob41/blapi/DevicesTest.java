@@ -47,7 +47,7 @@ public class DevicesTest {
 	@Test
 	@Ignore
 	public void testDevices() throws Exception {
-		BLDevice[] devs = BLDevice.discoverDevices(InetAddress.getByName("192.168.1.7"), 0, 0);
+		BLDevice[] devs = BLDevice.discoverDevices(InetAddress.getByName("192.168.1.9"), 0, 0);
 		log.info("BLDevice returned " + devs.length + " number of devices.");
 		for (int i = 0; i < devs.length; i++) {
 			BLDevice dev = devs[i];

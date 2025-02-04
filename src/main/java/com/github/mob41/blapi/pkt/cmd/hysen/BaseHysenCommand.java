@@ -3,7 +3,7 @@ package com.github.mob41.blapi.pkt.cmd.hysen;
 import java.net.DatagramPacket;
 import java.util.Arrays;
 
-import javax.xml.bind.DatatypeConverter;
+import java.util.Base64;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,14 +33,14 @@ public abstract class BaseHysenCommand implements CmdPayload {
         byte[] data = packet.getData();
 
         log.debug(this.getClass().getSimpleName() + " received encrypted bytes: "
-                + DatatypeConverter.printHexBinary(data));
+                + Base64.getEncoder().encodeToString(data));
 
         int err = data[0x22] | (data[0x23] << 8);
 
         if (err == 0) {
             byte[] pl = device.decryptFromDeviceMessage(data);
             log.debug(this.getClass().getSimpleName() + " received bytes (decrypted): "
-                    + DatatypeConverter.printHexBinary(pl));
+                    + Base64.getEncoder().encodeToString(pl));
             return Arrays.copyOfRange(pl, 2, pl.length);
         } else {
             log.warn(this.getClass().getSimpleName() + " received an error: " + Integer.toHexString(err) + " / " + err);
